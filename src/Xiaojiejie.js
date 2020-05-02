@@ -6,6 +6,7 @@ import './style.css'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import store from './store/index'
+import { changeInputAction, addItemAction, deleteItemAction } from './store/actionCreators'
 // import { Switch } from 'antd';
 // import 'antd/dist/antd.css';
 
@@ -88,10 +89,12 @@ class Xiaojiejie extends Component {
         inputValue: this.input.value 
       }) */
     // redux用法
-    const action = {
-      type: 'changeInput',
-      value: this.input.value
-    }
+    // const action = {
+    //   type: CHANGE_INPUT,
+    //   value: this.input.value
+    // }
+
+    const action = changeInputAction(this.input.value)
     store.dispatch(action);
   }
 
@@ -106,9 +109,7 @@ class Xiaojiejie extends Component {
     // }, () => {
     //   console.log(this.ul.querySelectorAll('li').length)
     // })
-    const action = {
-      type: 'addItem'
-    }
+    const action = addItemAction()
     store.dispatch(action);
   }
   // 删除列表项
@@ -120,10 +121,7 @@ class Xiaojiejie extends Component {
     //   list: list
     // })
 
-    const action = {
-      type: 'deleteItem',
-      index
-    }
+    const action = deleteItemAction(index)
     store.dispatch(action);
   }
 }
