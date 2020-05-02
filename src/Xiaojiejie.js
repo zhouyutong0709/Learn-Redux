@@ -18,7 +18,7 @@ class Xiaojiejie extends Component {
       list: ['基础按摩', '精油推背']
     } */
     this.state = store.getState()
-    this.storeChange=this.storeChange.bind(this)
+    this.storeChange = this.storeChange.bind(this)
     store.subscribe(this.storeChange)
     this.inputChange = this.inputChange.bind(this)
     this.addList = this.addList.bind(this)
@@ -95,26 +95,36 @@ class Xiaojiejie extends Component {
     store.dispatch(action);
   }
 
-  storeChange(){
+  storeChange() {
     this.setState(store.getState())
   }
   // 增加列表
   addList() {
-    this.setState({
-      list: [...this.state.list, this.state.inputValue],
-      inputValue: ''
-    }, () => {
-      console.log(this.ul.querySelectorAll('li').length)
-    })
+    // this.setState({
+    //   list: [...this.state.list, this.state.inputValue],
+    //   inputValue: ''
+    // }, () => {
+    //   console.log(this.ul.querySelectorAll('li').length)
+    // })
+    const action = {
+      type: 'addItem'
+    }
+    store.dispatch(action);
   }
   // 删除列表项
   deleteItem(index) {
     // console.log(index)
-    let list = this.state.list;
-    list.splice(index, 1);
-    this.setState({
-      list: list
-    })
+    // let list = this.state.list;
+    // list.splice(index, 1);
+    // this.setState({
+    //   list: list
+    // })
+
+    const action = {
+      type: 'deleteItem',
+      index
+    }
+    store.dispatch(action);
   }
 }
 
