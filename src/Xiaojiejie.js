@@ -109,8 +109,16 @@ class Xiaojiejie extends Component {
     // }, () => {
     //   console.log(this.ul.querySelectorAll('li').length)
     // })
-    const action = addItemAction()
-    store.dispatch(action);
+
+    this.RemoveTrim(this.state.inputValue)
+
+    if (this.state.inputValue) {
+      const action = addItemAction()
+      store.dispatch(action);
+    } else {
+      alert('请输入内容')
+    }
+
   }
   // 删除列表项
   deleteItem(index) {
@@ -123,6 +131,12 @@ class Xiaojiejie extends Component {
 
     const action = deleteItemAction(index)
     store.dispatch(action);
+  }
+
+  RemoveTrim(val) {
+    if (!val) return val;
+    console.log(val)
+    return val.replace(/(^\s*)|(\s*$)/g, "");
   }
 }
 
